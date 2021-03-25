@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
+      rel="stylesheet"
+    />
+    <link href="./style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/0.0.3/ical.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
+    
+    <script>
+    
+	document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var today = new Date().toISOString().split("T")[0];
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          initialDate: today,
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          },
+          events: {
+            url: "https://raw.githubusercontent.com/Jean-Golding-Institute/grapho_workshop/main/docs/_static/england-and-wales.ics",
+            // url: "https://www.gov.uk/bank-holidays/england-and-wales.ics",
+            format: "ics",
+          },
+        });
+
+        calendar.render();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="calendar"></div>
+  </body>
+</html>
